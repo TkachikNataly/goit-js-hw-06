@@ -14,12 +14,31 @@ const images = [
 ];
 const listGallery = document.querySelector(".gallery");
 
-const galleryElement = images.forEach(({ url, alt }) => {
+// const galleryElement = images.forEach(({ url, alt }) => {
+//   listGallery.insertAdjacentHTML(
+//     "afterbegin",
+//     `<li><img src = "${url}", alt = "${alt}", width = "420px", hight = "250px"></li>`
+//   );
+// });
+// listGallery.style.listStyle = "none";
+// listGallery.style.display = "grid";
+// listGallery.style.justifyContent = "center";
+
+
+const galleryElement = images.reduce((acc{ url, alt }) => {
+  acc += `<li class = "gallery_item"><img src = "${url}", alt = "${alt}></li?>`;
+  return acc;
+
   listGallery.insertAdjacentHTML(
     "afterbegin",
-    `<li><img src = "${url}", alt = "${alt}", width = "420px", hight = "250px"></li>`
-  );
-});
-listGallery.style.listStyle = "none";
-listGallery.style.display = "grid";
-listGallery.style.justifyContent = "center";
+//     `<li><img src = "${url}", alt = "${alt}", width = "420px", hight = "250px"></li>`
+//   );
+// });
+
+const listImage = images.reduce((acc, { url, alt }) => { 
+
+  acc += `<li class="gallery_item"><img src='${url}', alt='${alt}'></li>`;
+  return acc;
+},'');
+
+listGallery.insertAdjacentHTML('beforeend', listImage)
